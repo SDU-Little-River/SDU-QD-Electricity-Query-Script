@@ -102,7 +102,7 @@ def query(building, room):
     try:
         response = requests.post('https://mcard.sdu.edu.cn/charge/feeitem/getThirdData', headers=HEADERS, data=data)
         response.raise_for_status()
-        return json.loads(response.text)['map']['showData']['信息']
+        return json.loads(response.text)['map']['showData']['信息'][8:]
     except Exception as e:
         print(e)
         return None
