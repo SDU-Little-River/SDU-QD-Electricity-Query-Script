@@ -100,8 +100,9 @@ def building_to_id(building):
 def query(building, room):    
     data=f"feeitemid=410&type=IEC&level=3&campus=%E9%9D%92%E5%B2%9B%E6%A0%A1%E5%8C%BA%26%E9%9D%92%E5%B2%9B%E6%A0%A1%E5%8C%BA&building={building_to_id(building)}&room={room}"
     try:
-        response = requests.post('https://mcard.sdu.edu.cn/charge-app/charge/feeitem/query', headers=HEADERS, data=data)
+        response = requests.post('https://mcard.sdu.edu.cn/charge/feeitem/getThirdData', headers=HEADERS, data=data)
         response.raise_for_status()
+        return json.loads(response.text)['map']['showData']['信息']
     except Exception as e:
         print(e)
         return None
