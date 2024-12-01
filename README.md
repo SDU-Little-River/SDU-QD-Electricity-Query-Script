@@ -2,7 +2,13 @@
 
 曾经的电量查询脚本[SDUQD-Electricity-Inquiry](https://github.com/SkywalkerWei/SDUQD-Electricity-Inquiry) 停止维护，本人在抓包研究后决定自己写一款新的脚本。
 
+不再需要进入山大v卡通即可查询宿舍当前电费余量，可以与qq-bot 或短信接发平台结合制作定时电费提醒（电费预警）程序。
+
 目前可查 `S1 S2 S5 S6 S7 S8 S9 S10 S11 B1 B2 B5 B9 B10 T1 T2 T3`
+
+目前测试结果表明 `Synjones-Auth` 字段并不会过期，可以长期使用。
+
+[手机抓包教程](guide/手机抓包教程.md)
 
 ## 依赖安装
 
@@ -22,4 +28,4 @@
 ## 未来计划
 
 - 加入手机抓包教程
-- 制作可视化页面
+- ~~制作可视化页面~~
