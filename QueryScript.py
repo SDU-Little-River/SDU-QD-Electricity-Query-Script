@@ -76,20 +76,6 @@ BUILDINGS = [
     }
 ]
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Linux; Android 14; 23013RK75C Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.39 Mobile Safari/537.36/Synjones-E-Campus/2.3.24/&cn&/53",
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Origin": "https://mcard.sdu.edu.cn",
-    "Referer": "https://mcard.sdu.edu.cn/charge-app/",
-    "Synjones-Auth": config['Synjones-Auth'],
-    "Sec-Fetch-Site": "same-origin",
-    "Sec-Fetch-Mode": "cors",
-    "Sec-Fetch-Dest": "empty",
-    "Sec-Ch-Ua-Platform": "Android",
-    "Sec-Ch-Ua": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-    "Sec-Ch-Ua-Mobile": "?1",
-    "Accept": "application/json, text/plain, */*"
-}
 
 def building_to_id(building):
     for _building in BUILDINGS:
@@ -97,7 +83,21 @@ def building_to_id(building):
             return _building['buildingid']
     print('ERROR: Wrong building number')
 
-def query(building, room):    
+def query(building, room,Synjones_Auth=config['Synjones-Auth']):
+    HEADERS = {
+        "User-Agent": "Mozilla/5.0 (Linux; Android 14; 23013RK75C Build/UKQ1.230804.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/131.0.6778.39 Mobile Safari/537.36/Synjones-E-Campus/2.3.24/&cn&/53",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Origin": "https://mcard.sdu.edu.cn",
+        "Referer": "https://mcard.sdu.edu.cn/charge-app/",
+        "Synjones-Auth": Synjones_Auth,
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Ch-Ua-Platform": "Android",
+        "Sec-Ch-Ua": '"Android WebView";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+        "Sec-Ch-Ua-Mobile": "?1",
+        "Accept": "application/json, text/plain, */*"
+    }
     data=f"feeitemid=410&type=IEC&level=3&campus=%E9%9D%92%E5%B2%9B%E6%A0%A1%E5%8C%BA%26%E9%9D%92%E5%B2%9B%E6%A0%A1%E5%8C%BA&building={building_to_id(building)}&room={room}"
     try:
         response = requests.post('https://mcard.sdu.edu.cn/charge/feeitem/getThirdData', headers=HEADERS, data=data)
