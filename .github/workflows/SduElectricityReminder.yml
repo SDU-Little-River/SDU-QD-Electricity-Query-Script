@@ -9,14 +9,14 @@ on:
 
 jobs:
   sdu-electricity-spider:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6]
+        python-version: [3.12.7]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -26,12 +26,6 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run Spider in VPN
-        uses: zhangt2333/actions-easyconnect@main
-        with:
-          CLI_OPTS: ${{ secrets.CLI_OPTS }}
-          RETRY: 2
-          SLEEP_AFTER_LOGIN: 1
-          EXPECTED_EXIT_CODE: 66
-          # 先通链路再运行脚本
-          SCRIPT: |
-            python auto-script.py --email "${{ secrets.email }}" --password "${{ secrets.password }}" --Synjones_Auth "${{secrets.Synjones_Auth}}"
+        run: |
+            curl -m 3 --retry 3 -s -o /dev/null https://mcard.sdu.edu.cn/charge/feeitem/getThirdData
+            python auto-script.py --email ${{ secrets.EMAIL }} --password ${{ secrets.PASSWORD }} --Synjones_Auth "${{ secrets.SYNJONES_AUTH }}" --email_list "${{ secrets.EMAIL_LIST }}"
