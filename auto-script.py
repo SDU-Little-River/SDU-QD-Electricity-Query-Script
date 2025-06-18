@@ -43,12 +43,12 @@ if __name__ == "__main__":
     print(f"Password: {password}")
 
     from_email = email
-    smtp_server = "smtphm.qiye.163.com" # 此处使用山大云邮（网易企业邮箱）的SMTP服务器
+    smtp_server = "smtp.qq.com" # 此处使用山大云邮（网易企业邮箱）的SMTP服务器
     smtp_port = 587
     login = email
     password = password
     subject = "宿舍电量提醒"
-    last = query("S11", 221, Synjones_Auth=Synjones_Auth)
+    last = query("S2", a629, Synjones_Auth=Synjones_Auth)
     print(f"Query result: {last}")  # 添加调试信息
 
     try:
