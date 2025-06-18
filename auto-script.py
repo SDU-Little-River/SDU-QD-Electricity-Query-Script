@@ -54,7 +54,7 @@ if __name__ == "__main__":
     try:
         last_value = float(last)
         body = f"byd同学：<br><br>您好！<br><br>您的宿舍电量不足，仅剩{last_value}度，请及时充值。"
-        if last_value < 10: #last_value 为宿舍剩余电量，低于10度时发送邮件提醒，可根据实际情况修改
+        if last_value < 100: #last_value 为宿舍剩余电量，低于10度时发送邮件提醒，可根据实际情况修改
             email_list = args.email_list.split(",") if args.email_list else []
             send_email(subject, body, email_list, from_email, smtp_server, smtp_port, login, password)
     except ValueError as e:
