@@ -48,7 +48,7 @@ if __name__ == "__main__":
     login = email
     password = password
     subject = "宿舍电量提醒"
-    last = query("S2"， "a629", Synjones_Auth=Synjones_Auth)
+    last = query("S2","a629", Synjones_Auth=Synjones_Auth)
     print(f"Query result: {last}")  # 添加调试信息
 
     try:
